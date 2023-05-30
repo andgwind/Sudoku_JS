@@ -1,0 +1,168 @@
+$gapValue: 0.5vmin;
+$cellSize: 8vmin;
+
+$fontSize: 3vmin;
+$fontColor: #222222;
+
+$borderRadius: 0.5vmin;
+$backgroundColor: #7c7c7c;
+$backgroundCell: #f2f2f2;
+$backgroundFill: #d9d9d9;
+
+$selectedColor:  #fccf9c;;
+$highlightColor: #fff3e5;
+$hoverColorNumbers: #ffdbb3;
+
+$errorColor: #ff8c8c;
+$errorTextColor: #ffffff;
+
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+
+    font-family: Arial, Helvetica, sans-serif;
+    user-select: none;
+    background-color: $backgroundColor;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.grid {
+    
+    
+    &__cells {
+        display: grid;
+        grid-template-columns: repeat(9, auto);
+        grid-template-rows: repeat(9, auto);
+    
+        gap: $gapValue;
+    }
+}
+   
+.cells {
+    margin-bottom: 2vmin;
+    
+    &__item {
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        height: $cellSize;
+        width: $cellSize;
+
+        border-radius: $borderRadius;
+        font-size: $fontSize;
+        color: $fontColor;
+        background-color: $backgroundCell;
+
+        @media (any-hover) {
+            &:hover {
+                background-color: $hoverColorNumbers;
+                transition: 0.3s ease;
+            }
+        }
+
+        &.filled {
+            background-color: $backgroundFill;
+        }
+
+        &.highlighted {
+            background-color: $highlightColor;
+        }
+
+        &.selected {
+            background-color: $selectedColor;
+        }
+
+        &.error {
+            background-color: $errorColor;
+            color: $errorTextColor;
+        }
+    }
+
+    &__item:nth-child(3),
+    &__item:nth-child(6) {
+        margin-right: $gapValue;
+    }
+
+    &__item:nth-child(19),
+    &__item:nth-child(46) {
+        margin-bottom: $gapValue;
+    }
+
+    
+}
+
+.numbers {
+
+
+    &__items {
+        display: grid;
+        grid-template-columns: repeat(5, auto);
+        gap: $gapValue;
+    }
+
+    &__item, &__button-remove {
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        height: $cellSize;
+
+        border-radius: $borderRadius;
+        font-size: $fontSize;
+        color: $fontColor;
+        background-color: $backgroundCell;
+
+        @media (any-hover) {
+            &:hover {
+                background-color: $hoverColorNumbers;
+                transition: 0.3s ease;
+            }
+        }
+    }
+}
+
+.shake {
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0% {
+        transform: scale(1.2);
+    }
+
+    25% {
+        transform: scale(1.2) rotate(30deg);
+    }
+    
+    50% {
+        transform: scale(1.2) rotate(-30deg);
+    }
+}
+
+.zoom {
+    animation: zoom 0.5 ease-in-out;
+}
+
+@keyframes zoom {
+    0% {
+        transform: scale(1.2);
+    }
+}
